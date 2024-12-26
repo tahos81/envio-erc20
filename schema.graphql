@@ -1,0 +1,21 @@
+# type Account {
+#   id: ID! # account address
+#   sends: [TransferEvent!]! @derivedFrom(field: "from")
+#   receives: [TransferEvent!]! @derivedFrom(field: "to")
+#   balances: [TokenBalance!]! @derivedFrom(field: "account")
+# }
+
+type TokenBalance {
+  id: ID! # account + token
+  account: Bytes! @index
+  token: Bytes! @index
+  balance: BigInt!
+}
+
+type TransferEvent {
+  id: ID! #blockhash + logIndex
+  from: String! @index
+  to: String! @index
+  value: BigInt!
+  date: Int!
+}

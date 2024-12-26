@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: erc20indexer
+description: ERC-20 indexer
+contracts:
+  # - name: AccountFactory
+  #   abi_file_path: abis/AccountFactory.json
+  #   handler: src/FactoryHandlers.ts
+  #   events:
+  #     - event: "NewClaveAccount(address indexed accountAddress)"
+  - name: AccountFactoryV2
+    abi_file_path: abis/AccountFactoryV2.json
+    handler: src/FactoryHandlers.ts
+    events:
+      - event: "ClaveAccountDeployed(address indexed accountAddress)"
+networks:
+  - id: 324
+    start_block: 24799912
+    contracts:
+      # - name: AccountFactory
+      #   address:
+      #     - 0x3B91C2eCEaAd96f5Ef3B08738B2aA202a4012a79
+      - name: AccountFactoryV2
+        address:
+          - 0x2B196aaB35184aa539E3D8360258CAF8d8309Ebc
+      - name: ERC20
+        handler: src/ERC20Handlers.ts
+        events:
+          - event: "Transfer(address indexed from, address indexed to, uint256 value)"
+rollback_on_reorg: false
