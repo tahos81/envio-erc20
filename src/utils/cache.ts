@@ -8,7 +8,6 @@ export class AccountCache {
   private static instance: AccountCache | null = null;
 
   static async init() {
-    console.log("init");
     if (this.instance) {
       return this.instance;
     }

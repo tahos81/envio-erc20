@@ -7,13 +7,13 @@
 
 type TokenBalance {
   id: ID! # account + token
-  account: Bytes! @index
-  token: Bytes! @index
+  account: String! @index
+  token: String! @index
   balance: BigInt!
 }
 
 type TransferEvent {
-  id: ID! #blockhash + logIndex
+  id: ID! #blockhash + "-" + logIndex
   from: String! @index
   to: String! @index
   value: BigInt!
